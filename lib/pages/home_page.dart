@@ -52,8 +52,9 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: [
           AppinioSwiper(
-            padding: const EdgeInsets.only(bottom: 130, top: 16),
-            cards: profile,
+            cardBuilder: (context, index) => profile[index],
+            cardCount: profile.length,
+            loop: true,
           ),
           Positioned(
             bottom: 50,

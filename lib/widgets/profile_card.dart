@@ -9,6 +9,7 @@ class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height / 1.1,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
@@ -22,25 +23,27 @@ class ProfileCard extends StatelessWidget {
                 MaterialPageRoute(builder:  (context) => UserInfoPage(image: image))
               );
             },
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                image: DecorationImage(
-                  image: AssetImage(image.toString()),
-                  fit: BoxFit.cover,
+            child: Hero(
+              tag: 'profile_image_$image',
+              child: Container(
+                height: MediaQuery.of(context).size.height / 1.4,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  image: DecorationImage(
+                    image: AssetImage(image.toString()),
+                    fit: BoxFit.cover,
+                  ),
+                  )
                 ),
-                )
-              ),
+            ),
           ),
           Positioned(
-            bottom: 30,
+            bottom: 170,
             right: 0,
             child: Container(
-              height: 104,
-              width: MediaQuery.of(context).size.width / 1.2,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.white.withOpacity(0.7),
                 borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), bottomLeft: Radius.circular(16)),
               ),
               child: Column(

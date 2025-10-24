@@ -25,14 +25,9 @@ class UserInfoPage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 24),
-          child: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: ColorConstants.primaryColor,),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
+        leading: const Padding(
+          padding: EdgeInsets.only(left: 24),
+          child: BackButton()
         ),
         elevation: 0,
         actions: [
@@ -50,16 +45,19 @@ class UserInfoPage extends StatelessWidget {
           CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
-                child: Container(
-                  height: MediaQuery.of(context).size.height / 2,
-                  margin: const EdgeInsets.only(left: 20),
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(50)),
-                    image: DecorationImage(
-                      image: AssetImage(image),
-                      fit: BoxFit.fitWidth,
-                      alignment: Alignment.topCenter,
-                      scale: 1.1,
+                child: Hero(
+                  tag: 'profile_image_$image',
+                  child: Container(
+                    height: MediaQuery.of(context).size.height / 2,
+                    margin: const EdgeInsets.only(left: 20),
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(50)),
+                      image: DecorationImage(
+                        image: AssetImage(image),
+                        fit: BoxFit.cover,
+                        // alignment: Alignment.topCenter,
+                        scale: 1.1,
+                      ),
                     ),
                   ),
                 ),
@@ -133,7 +131,7 @@ class UserInfoPage extends StatelessWidget {
                         },
                       ),
                     ),
-                    const SizedBox(height: 100,)
+                    const SizedBox(height: 120,)
                   ],
                 ),
               ),
@@ -145,7 +143,7 @@ class UserInfoPage extends StatelessWidget {
             right: 0,
             left: 0,
             child: Container(
-              padding: const EdgeInsets.only(bottom: 50),
+              padding: const EdgeInsets.only(bottom: 30),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
